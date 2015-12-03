@@ -36,7 +36,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -O3
 
 LIBDIRS = $(addprefix -L, $(LIBDIR))
 LLIBS = $(addprefix -l, $(LINK))
