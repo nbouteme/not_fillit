@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:12:30 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/02 12:01:10 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/03 11:20:52 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ char **ft_strtok(const char *str, char c)
 	{
 		while (*s && *s != c)
 			++s;
-		ret[i] = ft_strncpy(ft_strnew(s - str), str, s - str);
+		ret[i] = ft_strncpy(ft_strnew(s - str + 1), str, s - str);
 		d = s;
 		while (*s && *s == c)
 			++s;
 		i += !!ret[i];
 		if(d != s)
-			ret[i++] = ft_strncpy(ft_strnew(s - d), d, s - d);
+			ret[i++] = ft_strncpy(ft_strnew(s - d + 1), d, s - d);
 		str = s++;
 	}
 	ret[i] = 0;

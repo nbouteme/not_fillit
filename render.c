@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:16:40 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/02 15:42:32 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/03 13:02:37 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_render *new_render()
 	i = -1;
 	r = malloc(sizeof(t_render));
 	while(++i < 26)
-		r->screen[i] = ft_memset(malloc(26), '.', 26);
+		r->screen[i] = ft_memset(ft_strnew(27), '.', 26);
 	r->w = 0;
 	r->h = 0;
 	return r;
@@ -81,20 +81,24 @@ void delete_render(t_render *d)
 	free(d);
 }
 
-void place(t_render *r, unsigned short tetra, t_point pos, char c)
+int place(t_render *r, unsigned short tetra, t_point pos, char c)
 {
 	int i;
 	short curr;
 	char **cur;
 	char **tet;
 
-	cur = chunk(r->screen, position, i);
+	cur = chunk(r->screen, pos);
 	if((tetra & (curr = translate(cur, 0, 0))) == 0)
 	{
 		tet = tetra2str(tetra, c);
 		merge_chunk(tet, cur);
-		set_chunk(r->screen, tet, position, i);
+		set_chunk(r->screen, tet, pos);
 		measure_render(r);
+		i = 1;
 	}
+	else
+		i = 0;
 	free(cur);
+	return i;
 }

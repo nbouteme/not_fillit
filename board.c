@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:14:59 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/02 13:44:07 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/03 14:25:20 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,54 @@ t_board *clone_board(t_board *board)
 	t_board *clone;
 
 	clone = malloc(sizeof(t_board));
-	ft_memcpy(clone->tetras, board->tetras, sizeof(unsigned short) * 26);
-	ft_memcpy(clone->position, board->position, sizeof(unsigned short) * 26);
-	ft_memcpy(clone->order, board->order, sizeof(unsigned char) * 26);
+	ft_memcpy(clone->tetras, board->tetras, sizeof(((t_board*)0)->tetras));
+	ft_memcpy(clone->position, board->position, sizeof(((t_board*)0)->position));
+	ft_memcpy(clone->order, board->order, sizeof(((t_board*)0)->order));
 	return (clone);
+}
+
+#include <assert.h>
+
+t_render *render_ctl(int cmd, t_render *r)
+{
+	static t_render *solution = 0;
+
+	if(r && cmd == 0 && (!solution || solution->s > r->s))
+		solution = r;
+
+	return solution;
+}
+
+void quit_gracefully(t_render *r)
+{
+	print_render(r);
+	exit(0);
+}
+
+t_render *rec_solve(t_board *b, int n, t_render *r, int max)
+{
+	if(n == b->ntetra)
+	{
+		render_ctl(0, r);
+		if(r->s <= max)
+			quit_gracefully(r);
+		return r;
+	}
+	for(int i = 0; i < max; ++i)
+		for(int j = 0; j < max; ++j)
+		{
+			t_render *tmp = copy_render(r);
+			if(place(tmp, b->tetras[n], (t_point){i, j}, 'A' + n))
+				if(tmp->s <= max + 1)
+					rec_solve(b, n + 1, tmp, max);
+		}
+	return 0;
 }
 
 t_render *resolve(t_board *board)
 {
-
-	return tmp;
-}
-
-t_render *render(t_board *b, int i, int n, t_render *ret)
-{
-	int j;
-	t_render *good;
-	t_render *tmp;
-
+	int n;
+	n = ft_sqrt(board->ntetra * 4);
+	rec_solve(board, 0, new_render(), n);
+	return render_ctl(1, 0);
 }

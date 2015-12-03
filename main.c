@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:21:35 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/02 11:12:35 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/03 14:02:52 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		quit_properly();
 	fd = open(argv[1], O_RDONLY);
-	if(!fd)
+	if(fd < 0)
 		quit_properly();
 	file = readfile(fd);
 	if(!file)

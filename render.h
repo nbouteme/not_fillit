@@ -6,13 +6,12 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:16:06 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/02 15:19:53 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/03 10:43:43 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		RENDER_H
-# define	RENDER_H
-
+#ifndef RENDER_H
+# define RENDER_H
 
 typedef struct	s_render
 {
@@ -28,15 +27,14 @@ typedef struct	s_point
 	int x;
 }				t_point;
 
-t_render *new_render();
-int render_cmp(t_render *a, t_render *b);
-t_render *copy_render(t_render *r);
-void delete_render(t_render *d);
-void place(t_render *r, unsigned short tetra, unsigned short position, char c);
-
-void print_render(t_render *r);
-int measure_render(t_render *r);
-char *flatten(t_render *r);
-int predcmp(char *a, char *b);
+t_render		*new_render();
+int				render_cmp(t_render *a, t_render *b);
+t_render		*copy_render(t_render *r);
+void			delete_render(t_render *d);
+int				place(t_render *r, unsigned short tetra, t_point position, char c);
+void			print_render(t_render *r);
+int				measure_render(t_render *r);
+char			*flatten(t_render *r);
+int				predcmp(char *a, char *b);
 
 #endif
