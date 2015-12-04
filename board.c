@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:14:59 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/04 12:08:52 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 13:30:03 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ t_board			*clone_board(t_board *board)
 	t_board		*clone;
 
 	clone = malloc(sizeof(t_board));
-	ft_memcpy(clone->tetras, board->tetras, sizeof(((t_board*)0)->tetras));
-	ft_memcpy(clone->position, board->position,
-			sizeof(((t_board*)0)->position));
-	ft_memcpy(clone->order, board->order, sizeof(((t_board*)0)->order));
+	ft_memcpy(clone, board, sizeof(t_board));
 	return (clone);
 }
 
@@ -86,10 +83,13 @@ t_render		*rec_solve(t_board *b, int n, t_render *r, int max)
 		return (r);
 	}
 	while (++i < max && (j = -1))
-		while (++j < max && (tmp = copy_render(r)))
+		while (++j < max)
+		{
+			tmp = copy_render(r);
 			if (place(tmp, b->tetras[n], (t_point){i, j}, 'A' + n))
 				if (tmp->s <= max + 2)
 					rec_solve(b, n + 1, tmp, max);
+		}
 	return (r);
 }
 

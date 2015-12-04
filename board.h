@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:14:33 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/03 15:02:56 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 13:05:42 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 typedef struct			s_board
 {
 	unsigned short		tetras[26];
-	unsigned short		position[26];
-	unsigned char		order[26];
 	unsigned char		ntetra;
 }						t_board;
 

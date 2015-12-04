@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:16:06 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/04 11:40:45 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 13:21:44 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ typedef unsigned short	t_u16;
 
 typedef struct			s_render
 {
-	char				*screen[26];
+	char				*screen[11];
 	int					s;
-	int					w;
-	int					h;
 }						t_render;
 
 typedef struct			s_point
