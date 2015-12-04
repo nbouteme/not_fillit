@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:16:40 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/04 13:44:57 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 15:45:14 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,47 @@ void		delete_render(t_render *d)
 	free(d);
 }
 
+void merge_chunk2(char **tetra, char **screen, t_point pos)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < 4)
+	{
+		j = -1;
+		while (++j < 4)
+			if(screen[pos.y + i][pos.x + j] == '.')
+				screen[pos.y + i][pos.x + j] = tetra[i][j];
+	}
+}
+
+unsigned short translate2(char **screen, t_point pos)
+{
+	int i = 0;
+	char *c[4];
+	while(i < 4)
+	{
+		c[i] = screen[i + pos.y] + pos.x;
+		++i;
+	}
+	return translate(c, 0, 0);
+}
+
 int			place(t_render *r, t_u16 tetra, t_point pos, char c)
 {
 	int		i;
-	short	curr;
-	char	**cur;
+	unsigned short	curr;
 	char	**tet;
 
-	//cur = chunk(r->screen, pos);
-	//if ((tetra & (curr = translate(cur, 0, 0))) == 0)
-	if ((tetra & (curr = translate(r->screen, pos.x, pos.y))) == 0)
+	if ((tetra & (curr = translate2(r->screen, pos))) == 0)
 	{
 		tet = tetra2str(tetra, c);
-		char *cur[4];
-		cur[0] = r->screen[pos.y] + pos.x;
-		cur[1] = r->screen[pos.y+1] + pos.x;
-		cur[2] = r->screen[pos.y+2] + pos.x;
-		cur[3] = r->screen[pos.y+3] + pos.x;
-		merge_chunk(tet, cur);
+		merge_chunk2(tet, r->screen, pos);
 		measure_render(r);
 		i = 1;
 	}
 	else
 		i = 0;
-	free(cur);
 	return (i);
 }
