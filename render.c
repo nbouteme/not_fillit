@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:16:40 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/04 15:45:14 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 21:25:38 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		delete_render(t_render *d)
 	free(d);
 }
 
-void merge_chunk2(char **tetra, char **screen, t_point pos)
+void		merge_chunk(char **tetra, char **screen, t_point pos)
 {
 	int i;
 	int j;
@@ -65,33 +65,21 @@ void merge_chunk2(char **tetra, char **screen, t_point pos)
 	{
 		j = -1;
 		while (++j < 4)
-			if(screen[pos.y + i][pos.x + j] == '.')
+			if (screen[pos.y + i][pos.x + j] == '.')
 				screen[pos.y + i][pos.x + j] = tetra[i][j];
 	}
 }
 
-unsigned short translate2(char **screen, t_point pos)
-{
-	int i = 0;
-	char *c[4];
-	while(i < 4)
-	{
-		c[i] = screen[i + pos.y] + pos.x;
-		++i;
-	}
-	return translate(c, 0, 0);
-}
-
 int			place(t_render *r, t_u16 tetra, t_point pos, char c)
 {
-	int		i;
+	int				i;
 	unsigned short	curr;
-	char	**tet;
+	char			**tet;
 
 	if ((tetra & (curr = translate2(r->screen, pos))) == 0)
 	{
 		tet = tetra2str(tetra, c);
-		merge_chunk2(tet, r->screen, pos);
+		merge_chunk(tet, r->screen, pos);
 		measure_render(r);
 		i = 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 11:57:38 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/03 15:25:36 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 20:29:00 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ unsigned short	parse_tetra(char **array)
 	while (++i < 4)
 	{
 		j = -1;
+		if (ft_strlen(tetra[i]) != 4)
+			return (0);
 		while (++j < 4)
 			if (tetra[i][j] != '.' && tetra[i][j] != '#')
 				return (0);
