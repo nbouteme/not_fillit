@@ -6,19 +6,19 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:04:52 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/03 15:18:54 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 11:43:16 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "block.h"
 
-u16_t				recognize(char **block)
+t_u16				recognize(char **block)
 {
 	int				x;
 	int				y;
 	int				i;
-	u16_t			result;
-	const u16_t		tetra[] = { 0xF000, 0xCC00, 0xE400, 0xE800,
+	t_u16			result;
+	const t_u16		tetra[] = { 0xF000, 0xCC00, 0xE400, 0xE800,
 										0xE200, 0xC600, 0x6C00, 0x8888,
 										0xCC00, 0x4C40, 0xC440, 0x4480,
 										0x4C80, 0x8C40, 0xF000, 0xCC00,
@@ -41,9 +41,9 @@ u16_t				recognize(char **block)
 	return (0);
 }
 
-u16_t				translate(char **block, int xshift, int yshift)
+t_u16				translate(char **block, int xshift, int yshift)
 {
-	u16_t	result;
+	t_u16	result;
 	int		i;
 	int		j;
 	char	c;
