@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:14:59 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/03 15:18:12 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 12:08:52 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_board			*clone_board(t_board *board)
 	return (clone);
 }
 
-t_render		*render_ctl(int cmd, t_render *r)
+static t_render	*render_ctl(int cmd, t_render *r)
 {
 	static t_render	*solution = 0;
 
@@ -74,6 +74,7 @@ t_render		*rec_solve(t_board *b, int n, t_render *r, int max)
 	int			j;
 	t_render	*tmp;
 
+	i = -1;
 	if (n == b->ntetra)
 	{
 		render_ctl(0, r);
@@ -84,16 +85,12 @@ t_render		*rec_solve(t_board *b, int n, t_render *r, int max)
 		}
 		return (r);
 	}
-	i = -1;
-	while (++i < max)
-	{
-		j = -1;
+	while (++i < max && (j = -1))
 		while (++j < max && (tmp = copy_render(r)))
 			if (place(tmp, b->tetras[n], (t_point){i, j}, 'A' + n))
-				if (tmp->s <= max + 1)
+				if (tmp->s <= max + 2)
 					rec_solve(b, n + 1, tmp, max);
-	}
-	return (0);
+	return (r);
 }
 
 t_render		*resolve(t_board *board)
