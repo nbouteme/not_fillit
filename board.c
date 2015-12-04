@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:14:59 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/04 15:26:27 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 16:25:32 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,14 @@ static t_render	*render_ctl(int cmd, t_render *r)
 	static t_render	*solution = 0;
 
 	if (r && cmd == 0 && (!solution || solution->s > r->s))
-		solution = r;
+	{
+		if (solution)
+			delete_render(solution);
+		solution = copy_render(r);
+	}
 	return (solution);
 }
-
+/*
 t_render		*rec_solve(t_board *b, int n, t_render *r, int max)
 {
 	int			i;
@@ -89,6 +93,51 @@ t_render		*rec_solve(t_board *b, int n, t_render *r, int max)
 			if (place(tmp, b->tetras[n], (t_point){i, j}, 'A' + n))
 				if (tmp->s <= max + 2)
 					rec_solve(b, n + 1, tmp, max);
+		}
+	return (r);
+}
+*/
+
+void erase_render(t_render *r, t_point pos, char c)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while(++i < 4)
+	{
+		j = -1;
+		while (++j < 4)
+			if(r->screen[pos.y + i][pos.x + j] == c)
+				r->screen[pos.y + i][pos.x + j] = '.';
+	}
+}
+
+t_render		*rec_solve(t_board *b, int n, t_render *r, int max)
+{
+	int			i;
+	int			j;
+	t_render	*tmp;
+
+	i = -1;
+	if (n == b->ntetra)
+	{
+		render_ctl(0, r);
+		if (r->s <= max)
+		{
+			print_render(r);
+			exit(0);
+		}
+		return (r);
+	}
+	while (++i < max && (j = -1))
+		while (++j < max)
+		{
+			tmp = r;
+			if (place(tmp, b->tetras[n], (t_point){i, j}, 'A' + n))
+				if (tmp->s <= max + 2)
+					rec_solve(b, n + 1, tmp, max);
+			erase_render(tmp, (t_point){i, j}, 'A' + n);
 		}
 	return (r);
 }
