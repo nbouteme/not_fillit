@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:16:40 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/03 15:22:33 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/04 11:40:11 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,6 @@ t_render	*new_render(void)
 	r->w = 0;
 	r->h = 0;
 	return (r);
-}
-
-int			render_cmp(t_render *a, t_render *b)
-{
-	char	*sa;
-	char	*sb;
-	int		res;
-
-	if (a->s != b->s)
-		return (a->s - b->s);
-	sa = flatten(a);
-	sb = flatten(b);
-	res = predcmp(sa, sb);
-	free(sa);
-	free(sb);
-	if (!res)
-	{
-		if (a->h != b->h)
-			return (a->h - b->h);
-		if (a->w != b->w)
-			return (a->w - b->w);
-	}
-	return (res);
 }
 
 t_render	*copy_render(t_render *r)
@@ -81,7 +58,7 @@ void		delete_render(t_render *d)
 	free(d);
 }
 
-int			place(t_render *r, unsigned short tetra, t_point pos, char c)
+int			place(t_render *r, t_u16 tetra, t_point pos, char c)
 {
 	int		i;
 	short	curr;
