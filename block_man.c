@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:09:27 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/03 15:06:16 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/08 14:13:31 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		set_chunk(char **block, char **chunk, t_point pos)
 		ft_strncpy(block[pos.y + i] + pos.x, chunk[i], 4);
 }
 
-void		merge_chunk(char **tet, char **cur)
+void		merge_chunk(char **tetra, char **screen, t_point pos)
 {
 	int i;
 	int j;
@@ -46,8 +46,7 @@ void		merge_chunk(char **tet, char **cur)
 	{
 		j = -1;
 		while (++j < 4)
-			if (tet[i][j] == '.')
-				tet[i][j] = cur[i][j];
-		free(cur[i]);
+			if (screen[pos.y + i][pos.x + j] == '.')
+				screen[pos.y + i][pos.x + j] = tetra[i][j];
 	}
 }

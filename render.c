@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:16:40 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/04 21:25:38 by nbouteme         ###   ########.fr       */
+/*   Updated: 2015/12/08 14:13:30 by nbouteme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,6 @@ void		delete_render(t_render *d)
 	while (++i < 11)
 		free(d->screen[i]);
 	free(d);
-}
-
-void		merge_chunk(char **tetra, char **screen, t_point pos)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (++i < 4)
-	{
-		j = -1;
-		while (++j < 4)
-			if (screen[pos.y + i][pos.x + j] == '.')
-				screen[pos.y + i][pos.x + j] = tetra[i][j];
-	}
 }
 
 int			place(t_render *r, t_u16 tetra, t_point pos, char c)
