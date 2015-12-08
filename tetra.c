@@ -49,7 +49,7 @@ unsigned short	parse_tetra(char **array)
 	while (++i < 4)
 	{
 		j = -1;
-		if (ft_strlen(tetra[i]) != 4)
+		if (!tetra[i] || ft_strlen(tetra[i]) != 4)
 			return (0);
 		while (++j < 4)
 			if (tetra[i][j] != '.' && tetra[i][j] != '#')
