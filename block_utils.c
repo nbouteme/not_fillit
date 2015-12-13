@@ -30,7 +30,7 @@ t_u16				recognize(char **block)
 	y = 0;
 	i = 0;
 	while (col_empty(block, i, 4) && i < 4)
-		++x;
+		++i;
 	while (line_empty(block, y, 4) && y < 3)
 		++y;
 	result = translate(block, i, y);
