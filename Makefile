@@ -35,8 +35,7 @@ SRC = block_man.c      \
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
-OPT=-O3
-CFLAGS = -Wall -Wextra -Werror $(OPT)
+CFLAGS = -Wall -Wextra -Werror
 
 LIBDIRS = $(addprefix -L, $(LIBDIR))
 LLIBS = $(addprefix -l, $(LINK))

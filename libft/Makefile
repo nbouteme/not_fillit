@@ -85,7 +85,7 @@ SRC =	ft_putchar_fd.c			\
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -g
+CFLAGS = -Wall -Wextra -Werror -I$(INCDIR)
 
 all: $(NAME)
 
