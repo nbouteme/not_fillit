@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "block.h"
+#include "sys_utils.h"
 
 t_u16				recognize(char **block)
 {
@@ -30,14 +31,15 @@ t_u16				recognize(char **block)
 	x = 0;
 	y = 0;
 	i = 0;
-	while (col_empty(block, x, 4))
+	while (col_empty(block, x, 4) && x < 4)
 		++x;
-	while (line_empty(block, y, 4))
+	while (line_empty(block, y, 4) && y < 3)
 		++y;
 	result = translate(block, x, y);
-	while (i < 28)
+	while (i < 24)
 		if (tetra[i++] == result)
 			return (result);
+	quit_properly();
 	return (0);
 }
 
