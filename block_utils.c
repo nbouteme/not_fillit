@@ -15,7 +15,6 @@
 
 t_u16				recognize(char **block)
 {
-	int				x;
 	int				y;
 	int				i;
 	t_u16			result;
@@ -28,14 +27,14 @@ t_u16				recognize(char **block)
 										0x88C0, 0xC880, 0x4C80, 0x8C40,
 										0x0000};
 
-	x = 0;
 	y = 0;
 	i = 0;
-	while (col_empty(block, x, 4) && x < 4)
+	while (col_empty(block, i, 4) && i < 4)
 		++x;
 	while (line_empty(block, y, 4) && y < 3)
 		++y;
-	result = translate(block, x, y);
+	result = translate(block, i, y);
+	i = 0;
 	while (i < 24)
 		if (tetra[i++] == result)
 			return (result);
