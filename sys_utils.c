@@ -22,7 +22,18 @@ void	quit_properly(void)
 	exit(1);
 }
 
-char	*readfile(int fd)
+int check_input(char *s)
+{
+	static char *auth = ".#\n";
+	while(*s)
+		if(ft_strindexof(auth, *s) == -1)
+			return 0;
+		else
+			++s;
+	return 1;
+}
+
+char	*readfile(int fd, int (*check)(char *))
 {
 	char	*buf;
 	char	*tmp;
@@ -33,10 +44,13 @@ char	*readfile(int fd)
 	buf = ft_strnew(B_SIZE + 1);
 	while ((n = read(fd, buf, B_SIZE)) > 0)
 	{
+		if(!check(buf))
+			return 0;
 		tmp = ret;
 		ft_bzero(buf + n, B_SIZE - n);
 		ret = ft_strjoin(ret, buf);
 		free(tmp);
 	}
+	free(buf);
 	return (ret);
 }

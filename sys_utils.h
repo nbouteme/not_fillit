@@ -15,8 +15,9 @@
 
 # define B_SIZE 4096
 
-char	*readfile(int fd);
+char	*readfile(int fd, int (*check)(char *));
 void	quit_properly(void);
 char	**ft_strtok(const char *str, char c);
+int check_input(char *s);
 
 #endif
