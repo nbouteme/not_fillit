@@ -15,16 +15,14 @@
 
 #include "block.h"
 
-char			**tetra2str(unsigned short tetra, char c)
+t_tetraptr tetra2str(unsigned short tetra, char c)
 {
 	int		i;
 	int		j;
-	char	**ret;
+	static char	ret[4][4];
 
-	i = 0;
-	ret = malloc(sizeof(char *) * 4);
-	while (i < 4)
-		ret[i++] = ft_memset(malloc(4), '.', 4);
+	i = 4;
+	ft_memset(ret, '.', sizeof(ret));
 	while (i--)
 	{
 		j = -1;
@@ -32,7 +30,7 @@ char			**tetra2str(unsigned short tetra, char c)
 			ret[3 - i][j] = ((tetra & (0xF << (i << 2))) >> (i << 2) &
 							(1 << (3 - j))) ? c : '.';
 	}
-	return (ret);
+	return (&ret);
 }
 
 unsigned short	parse_tetra(char **array)

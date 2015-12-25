@@ -14,6 +14,7 @@
 #include <libft.h>
 
 #include "render.h"
+#include "block.h"
 
 char		**chunk(char **block, t_point pos)
 {
@@ -36,7 +37,7 @@ void		set_chunk(char **block, char **chunk, t_point pos)
 		ft_strncpy(block[pos.y + i] + pos.x, chunk[i], 4);
 }
 
-void		merge_chunk(char **tetra, char **screen, t_point pos)
+void		merge_chunk(t_tetraptr tetra, char **screen, t_point pos)
 {
 	int i;
 	int j;
@@ -47,6 +48,6 @@ void		merge_chunk(char **tetra, char **screen, t_point pos)
 		j = -1;
 		while (++j < 4)
 			if (screen[pos.y + i][pos.x + j] == '.')
-				screen[pos.y + i][pos.x + j] = tetra[i][j];
+				screen[pos.y + i][pos.x + j] = (*tetra)[i][j];
 	}
 }

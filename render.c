@@ -57,18 +57,13 @@ void		delete_render(t_render *d)
 
 int			place(t_render *r, t_u16 tetra, t_point pos, char c)
 {
-	int				i;
 	unsigned short	curr;
-	char			**tet;
+	t_tetraptr tet;
 
-	if ((tetra & (curr = translate2(r->screen, pos))) == 0)
-	{
-		tet = tetra2str(tetra, c);
-		merge_chunk(tet, r->screen, pos);
-		measure_render(r);
-		i = 1;
-	}
-	else
-		i = 0;
-	return (i);
+	if ((tetra & (curr = translate2(r->screen, pos))))
+		return (0);
+	tet = tetra2str(tetra, c);
+	merge_chunk(tet, r->screen, pos);
+	measure_render(r);
+	return (1);
 }

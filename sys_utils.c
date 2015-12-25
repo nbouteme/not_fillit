@@ -46,9 +46,10 @@ char	*readfile(int fd, int (*check)(char *))
 	{
 		if(!check(buf))
 			return 0;
-		tmp = ret;
 		ft_bzero(buf + n, B_SIZE - n);
+		tmp = ret;
 		ret = ft_strjoin(ret, buf);
+		ft_strclr(buf);
 		free(tmp);
 	}
 	free(buf);

@@ -13,7 +13,9 @@
 #ifndef TETRA_H
 # define TETRA_H
 
-char			**tetra2str(unsigned short tetra, char c);
+#include "block.h"
+
+t_tetraptr tetra2str(unsigned short tetra, char c);
 unsigned short	parse_tetra(char **array);
 
 #endif

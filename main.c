@@ -37,6 +37,10 @@ int	main(int argc, char **argv)
 		quit_properly();
 	array = ft_strtok(file, '\n');
 	board = parse_info(array);
+	fd = 0;
+	while (array[fd])
+		free(array[fd++]);
+	free(array);
 	r = resolve(board);
 	print_render(r);
 }
