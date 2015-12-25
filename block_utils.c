@@ -20,7 +20,7 @@ t_u16				recognize(char **block)
 	t_u16			result;
 	const t_u16		tetra[] = { 0xF000, 0xCC00, 0xE400, 0xE800,
 										0xE200, 0xC600, 0x6C00, 0x8888,
-										0xCC00, 0x4C40, 0xC440, 0x4480,
+										0xCC00, 0x4C40, 0xC440, 0x44C0,
 										0x4C80, 0x8C40, 0xF000, 0xCC00,
 										0x4E00, 0x8E00, 0x2E00, 0xC600,
 										0x6C00, 0x8888, 0xCC00, 0x8C80,
@@ -35,7 +35,7 @@ t_u16				recognize(char **block)
 		++y;
 	result = translate(block, i, y);
 	i = 0;
-	while (i < 24)
+	while (i < 28)
 		if (tetra[i++] == result)
 			return (result);
 	quit_properly();
