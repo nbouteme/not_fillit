@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:12:00 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/03 15:23:40 by nbouteme         ###   ########.fr       */
+/*   Updated: 2016/01/07 16:10:53 by eleclet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,20 @@
 
 void	quit_properly(void)
 {
-	write(2, "error\n", 6);
+	write(1, "error\n", 6);
 	exit(1);
 }
 
-int check_input(char *s)
+int		check_input(char *s)
 {
 	static char *auth = ".#\n";
-	while(*s)
-		if(ft_strindexof(auth, *s) == -1)
-			return 0;
+
+	while (*s)
+		if (ft_strindexof(auth, *s) == -1)
+			return (0);
 		else
 			++s;
-	return 1;
+	return (1);
 }
 
 char	*readfile(int fd, int (*check)(char *))
@@ -44,8 +45,8 @@ char	*readfile(int fd, int (*check)(char *))
 	buf = ft_strnew(B_SIZE + 1);
 	while ((n = read(fd, buf, B_SIZE)) > 0)
 	{
-		if(!check(buf))
-			return 0;
+		if (!check(buf))
+			return (0);
 		ft_bzero(buf + n, B_SIZE - n);
 		tmp = ret;
 		ret = ft_strjoin(ret, buf);

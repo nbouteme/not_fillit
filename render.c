@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:16:40 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/08 14:13:30 by nbouteme         ###   ########.fr       */
+/*   Updated: 2016/01/07 16:11:35 by eleclet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		delete_render(t_render *d)
 int			place(t_render *r, t_u16 tetra, t_point pos, char c)
 {
 	unsigned short	curr;
-	t_tetraptr tet;
+	t_tetraptr		tet;
 
 	if ((tetra & (curr = translate2(r->screen, pos))))
 		return (0);

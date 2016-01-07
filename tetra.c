@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 11:57:38 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/04 20:29:00 by nbouteme         ###   ########.fr       */
+/*   Updated: 2016/01/07 16:12:10 by eleclet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 #include "block.h"
 
-t_tetraptr tetra2str(unsigned short tetra, char c)
+t_tetraptr		tetra2str(unsigned short tetra, char c)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 	static char	ret[4][4];
 
 	i = 4;
