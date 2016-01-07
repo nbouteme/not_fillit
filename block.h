@@ -6,7 +6,7 @@
 /*   By: nbouteme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 10:07:20 by nbouteme          #+#    #+#             */
-/*   Updated: 2015/12/08 14:12:21 by nbouteme         ###   ########.fr       */
+/*   Updated: 2016/01/07 16:42:09 by eleclet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "render.h"
 
-typedef char (*t_tetraptr)[4][4];
+typedef	char	(*t_tetraptr)[4][4];
 
 t_u16			recognize(char **block);
 t_u16			translate(char **block, int xshift, int yshift);
